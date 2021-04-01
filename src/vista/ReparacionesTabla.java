@@ -5,26 +5,26 @@
  */
 package vista;
 
-import controlador.ConMaquinasMantenimiento;
+import controlador.ConReparaciones;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import modelos.Trabajador;
-import modelos.Mantenimiento;
+import modelos.Reparacion;
 import modelos.Maquinas_Mantenimiento;
 
-public class MaquinasMantenimientoTabla extends javax.swing.JFrame {
+public class ReparacionesTabla extends javax.swing.JFrame {
 
     /**
      * Creates new form TrabajadoresTabla
      */
-    private final ConMaquinasMantenimiento controlador;
-    private ArrayList<Maquinas_Mantenimiento> array;
-    private Mantenimiento base;
+    private final ConReparaciones controlador;
+    private ArrayList<Reparacion> array;
+    private Maquinas_Mantenimiento base;
 
-    public MaquinasMantenimientoTabla(Mantenimiento modelo) {
+    public ReparacionesTabla(Maquinas_Mantenimiento modelo) {
         initComponents();
         base = modelo;
-        controlador = new ConMaquinasMantenimiento();
+        controlador = new ConReparaciones();
         llenarTabla();
         llenarIU();
     }
@@ -34,7 +34,7 @@ public class MaquinasMantenimientoTabla extends javax.swing.JFrame {
         dtm.setColumnIdentifiers(controlador.describe());
 
         array = controlador.listar(base.getId());
-        for (Maquinas_Mantenimiento item : array) {
+        for (Reparacion item : array) {
             dtm.addRow(item.getDatos());
         }
         tabla.setModel(dtm);
@@ -42,10 +42,8 @@ public class MaquinasMantenimientoTabla extends javax.swing.JFrame {
 
     private void llenarIU() {
         id.setText(base.getId() + "");
-        fecha.setText(base.getFecha()+ "");
-        valor.setText(base.getValor()+ "");
-        ccCliente.setText(base.getCc_cliente()+"");
-        nombreCliente.setText(base.getCliente().getNombre());
+        ccTrabajador.setText(base.getCc_trabajador()+"");
+        nombreTrabajador.setText(base.getTrabajador().getNombre());
 
     }
 
@@ -65,14 +63,9 @@ public class MaquinasMantenimientoTabla extends javax.swing.JFrame {
         tabla = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         id = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        fecha = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        valor = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        ccCliente = new javax.swing.JLabel();
-        nombreCliente = new javax.swing.JLabel();
-        btnEditar = new javax.swing.JButton();
+        ccTrabajador = new javax.swing.JLabel();
+        nombreTrabajador = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -116,27 +109,12 @@ public class MaquinasMantenimientoTabla extends javax.swing.JFrame {
 
         id.setText("00000000");
 
-        jLabel3.setText("Fecha");
-
-        fecha.setText("00-00-0000");
-
-        jLabel5.setText("Valor");
-
-        valor.setText("000000");
-
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Cliente");
+        jLabel7.setText("Trabajador");
 
-        ccCliente.setText("00000000");
+        ccTrabajador.setText("00000000");
 
-        nombreCliente.setText("xxxxx");
-
-        btnEditar.setText("Editar");
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
-            }
-        });
+        nombreTrabajador.setText("xxxxx");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -149,22 +127,15 @@ public class MaquinasMantenimientoTabla extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 5, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(id))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(fecha))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(valor))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 16, Short.MAX_VALUE)
+                                .addGap(165, 165, 165))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(id, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(128, 128, 128)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(68, 68, 68)
@@ -173,9 +144,9 @@ public class MaquinasMantenimientoTabla extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(ccCliente)
+                                        .addComponent(ccTrabajador)
                                         .addGap(49, 49, 49)
-                                        .addComponent(nombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(nombreTrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap())
         );
@@ -185,32 +156,21 @@ public class MaquinasMantenimientoTabla extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(btnEditar))
+                    .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton3)
                         .addGap(12, 12, 12)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(3, 3, 3)
-                                .addComponent(id))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(3, 3, 3)
-                                .addComponent(fecha))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(3, 3, 3)
-                                .addComponent(valor))))
+                        .addComponent(jLabel1)
+                        .addGap(3, 3, 3)
+                        .addComponent(id))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nombreCliente)
-                            .addComponent(ccCliente))))
+                            .addComponent(nombreTrabajador)
+                            .addComponent(ccTrabajador))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -232,30 +192,20 @@ public class MaquinasMantenimientoTabla extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
-        ReparacionesTabla vista = new ReparacionesTabla(array.get(tabla.getSelectedRow()));
-       vista.setVisible(true);
+//array.get(jtable.getSelectedRow())        // TODO add your handling code here:
     }//GEN-LAST:event_tablaMouseClicked
-
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEditarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEditar;
-    private javax.swing.JLabel ccCliente;
-    private javax.swing.JLabel fecha;
+    private javax.swing.JLabel ccTrabajador;
     private javax.swing.JLabel id;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel nombreCliente;
+    private javax.swing.JLabel nombreTrabajador;
     private javax.swing.JTable tabla;
-    private javax.swing.JLabel valor;
     // End of variables declaration//GEN-END:variables
 }

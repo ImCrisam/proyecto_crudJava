@@ -49,8 +49,8 @@ public class Conexion {
         }
 
         if (con == null || con.isClosed()) {
-            //con = DriverManager.getConnection("jdbc:mysql://remotemysql.com/ZsP67MY4Ok", "ZsP67MY4Ok", "d74cm0Hfur");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto2","root", "");
+            con = DriverManager.getConnection("jdbc:mysql://remotemysql.com/ZsP67MY4Ok", "ZsP67MY4Ok", "d74cm0Hfur");
+            //con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto2","root", "");
 
             System.out.println("Conexion exitosa");
         }

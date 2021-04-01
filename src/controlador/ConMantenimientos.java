@@ -26,7 +26,9 @@ public class ConMantenimientos {
         return new String[]{"id", "fecha", "valor", "cc Cliente"};
     }
     public void defaultData(){
-        //insert(new Maquina("CAT1230321", "NN", "Caterpillar", "Caterpillar CAT 123", "Excavadora"));
+       insert(new Mantenimiento("20-01-2021",50000 , 0));
+       insert(new Mantenimiento("12-01-2021",250000 , 1));
+       insert(new Mantenimiento("05-02-2021",150000 , 3));
         
     }
   

@@ -32,29 +32,29 @@ public class ConReparaciones {
       public void defaultData() {
         insert(new Reparacion("oret amet consectetur adipiscing elit non orci montes vehicula parturient",
                 500.00,
-                0));
+                1));
         insert(new Reparacion("orem ipsum dolor sit amet consectetur adiicula mauris parturient",
                 100.00,
-                0));
+                1));
         insert(new Reparacion("orem ipsum dolor sitn orci montes vehicula mauris parturient",
                 1500.00,
-                1));
+                2));
         insert(new Reparacion("orem ipsum dolor sitn orci montes vehicula adipiscing elit non orci m mauris paient",
                 150.00,
-                1));
+                2));
         insert(new Reparacion("orem ipsum dolor sitn orci montes vehicula mauris parturient",
                 50.00,
-                2));
+                3));
     }
      
-      public ArrayList<Reparacion> listar() {
+      public ArrayList<Reparacion> listar(int id) {
         Statement st;
         ResultSet rs;
         ArrayList<Reparacion> result = new ArrayList<>();
 
         try {
             st = conexion.getCon().createStatement();
-            rs = st.executeQuery("select * from reparaciones");
+            rs = st.executeQuery("select * from reparaciones WHERE id_maquina_mantenimiento = "+id);
             while (rs.next()) {
                 result.add(
                         new Reparacion(

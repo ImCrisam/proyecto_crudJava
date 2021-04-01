@@ -45,7 +45,9 @@ public class Maquinas_Mantenimiento {
          this.array = new ArrayList<>();
     }
     
-    
+    public Object[] getDatos(){
+     return new Object[]{id, id_maquina, cc_trabajador};
+    }
     
     public int getId() {
         return id;

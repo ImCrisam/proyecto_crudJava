@@ -37,6 +37,10 @@ public class Reparacion {
         this.valor = valor;
         this.id_maquina_mantenimiento = id_maquina_mantenimiento;
     }
+    
+    public Object[] getDatos(){
+     return new Object[]{id, descripcion, valor};
+    }
 
     public int getId() {
         return id;

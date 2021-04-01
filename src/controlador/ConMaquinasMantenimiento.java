@@ -12,8 +12,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import modelos.Maquinas_Mantenimiento;
 import modelos.Trabajador;
-
 import modelos.Maquina;
+
 
 public class ConMaquinasMantenimiento {
 
@@ -26,12 +26,15 @@ public class ConMaquinasMantenimiento {
     public static String[] describe() {
         return new String[]{"id", "id maquina", "cc trabajador"};
     }
-     public void defaultData(){
-        //insert(new Maquina("CAT1230321", "NN", "Caterpillar", "Caterpillar CAT 123", "Excavadora"));
-        
+
+    public void defaultData() {
+       insert(new Maquinas_Mantenimiento(1, 1, 16810820));
+       insert(new Maquinas_Mantenimiento(1, 2, 16490213));
+       insert(new Maquinas_Mantenimiento(2, 1, 16810820));
+
     }
 
-    public ArrayList<Maquinas_Mantenimiento> listar() {
+    public ArrayList<Maquinas_Mantenimiento> listar(int id) {
         Statement st;
         ResultSet rs;
         ArrayList<Maquinas_Mantenimiento> result = new ArrayList<>();
@@ -41,9 +44,10 @@ public class ConMaquinasMantenimiento {
             rs = st.executeQuery("SELECT * "
                     + "FROM maquinas_mantenimiento "
                     + "JOIN maquinas "
-                    + "ON maquinas_mantenimiento.id_maquina = maquinas.id"
+                    + "ON maquinas_mantenimiento.id_maquina = maquinas.id "
                     + "JOIN trabajadores "
-                    + "ON maquinas_mantenimiento.cc_trabajadores = trabajadores.cc");
+                    + "ON maquinas_mantenimiento.cc_trabajador = trabajadores.cc "
+                    + "WHERE id_mantenimiento = "+id);
             while (rs.next()) {
                 result.add(
                         new Maquinas_Mantenimiento(
