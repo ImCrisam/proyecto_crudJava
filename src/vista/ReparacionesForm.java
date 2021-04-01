@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package vista;
-
+import modelos.Reparacion;
 /**
  *
  * @author David Raigosa
@@ -14,8 +14,11 @@ public class ReparacionesForm extends javax.swing.JFrame {
     /**
      * Creates new form Reparaciones
      */
-    public ReparacionesForm() {
+    public ReparacionesForm(Reparacion modelo) {
         initComponents();
+        if(modelo !=null){
+            
+        }
     }
 
     /**
