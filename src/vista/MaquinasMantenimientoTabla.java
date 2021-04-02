@@ -24,6 +24,7 @@ public class MaquinasMantenimientoTabla extends javax.swing.JFrame {
     public MaquinasMantenimientoTabla(Mantenimiento modelo) {
         initComponents();
         base = modelo;
+        setTitle("Maquinas en Mantenimiento");
         controlador = new ConMaquinasMantenimiento();
         llenarTabla();
         llenarIU();

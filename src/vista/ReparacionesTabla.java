@@ -23,6 +23,7 @@ public class ReparacionesTabla extends javax.swing.JFrame {
 
     public ReparacionesTabla(Maquinas_Mantenimiento modelo) {
         initComponents();
+        setTitle("Reparaciones");
         base = modelo;
         controlador = new ConReparaciones();
         llenarTabla();
