@@ -38,6 +38,7 @@ public class Login extends javax.swing.JFrame {
         txtContraseña = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         labUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labUsuario.setText("Usuario");

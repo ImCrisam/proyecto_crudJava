@@ -115,7 +115,7 @@ public class ConReparaciones {
             statement.setString(1, modelo.getDescripcion());
             statement.setDouble(2, modelo.getValor());
             statement.setInt(3, modelo.getId_maquina_mantenimiento());
-            statement.setInt(5, modelo.getId());
+            statement.setInt(4, modelo.getId());
 
             int rowsUpdated = statement.executeUpdate();
             if (rowsUpdated > 0) {

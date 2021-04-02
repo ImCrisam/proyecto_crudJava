@@ -17,6 +17,12 @@ public class Reparacion {
     private double valor;
     private int id_maquina_mantenimiento;
 
+    public Reparacion(int id_maquina_mantenimiento) {
+        this.id_maquina_mantenimiento = id_maquina_mantenimiento;
+    }
+
+    
+    
     public Reparacion(int id, String descripcion, double valor) {
         this.id = id;
         this.descripcion = descripcion;

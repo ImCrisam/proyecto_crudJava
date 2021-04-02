@@ -20,6 +20,11 @@ public class Maquinas_Mantenimiento {
     private Maquina maquina;
     private ArrayList<Reparacion> array;
 
+    public Maquinas_Mantenimiento(int id_mantenimiento) {
+        this.id_mantenimiento = id_mantenimiento;
+    }
+
+    
     public Maquinas_Mantenimiento(int id_mantenimiento, int id_maquina, int cc_trabajador) {
         this.id_mantenimiento = id_mantenimiento;
         this.id_maquina = id_maquina;

@@ -3,10 +3,26 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/David%20Raigosa/Documents/NetBeansProjects/proyect2/src/vista/ClientesTabla.java</file>
-            <file>file:/C:/Users/David%20Raigosa/Documents/NetBeansProjects/proyect2/src/modelos/Maquina.java</file>
-            <file>file:/C:/Users/David%20Raigosa/Documents/NetBeansProjects/proyect2/src/modelos/Trabajador.java</file>
-            <file>file:/C:/Users/David%20Raigosa/Documents/NetBeansProjects/proyect2/src/vista/MaquinasTabla.java</file>
+            <file>file:/D:/__Proyectos/_Repostorios/proyecto_crudJava/src/modelos/Maquinas_Mantenimiento.java</file>
+            <file>file:/D:/__Proyectos/_Repostorios/proyecto_crudJava/src/vista/ClientesForm.java</file>
+            <file>file:/D:/__Proyectos/_Repostorios/proyecto_crudJava/src/controlador/Tablas.java</file>
+            <file>file:/D:/__Proyectos/_Repostorios/proyecto_crudJava/src/vista/MaquinasMantenimientoTabla.java</file>
+            <file>file:/D:/__Proyectos/_Repostorios/proyecto_crudJava/src/controlador/ConClientes.java</file>
+            <file>file:/D:/__Proyectos/_Repostorios/proyecto_crudJava/src/controlador/ConMantenimientos.java</file>
+            <file>file:/D:/__Proyectos/_Repostorios/proyecto_crudJava/src/modelos/Mantenimiento.java</file>
+            <file>file:/D:/__Proyectos/_Repostorios/proyecto_crudJava/src/vista/ReparacionesTabla.java</file>
+            <file>file:/D:/__Proyectos/_Repostorios/proyecto_crudJava/src/modelos/Reparacion.java</file>
+            <file>file:/D:/__Proyectos/_Repostorios/proyecto_crudJava/src/controlador/ConUsuarios.java</file>
+            <file>file:/D:/__Proyectos/_Repostorios/proyecto_crudJava/src/controlador/ConTrabajadores.java</file>
+            <file>file:/D:/__Proyectos/_Repostorios/proyecto_crudJava/src/controlador/ConReparaciones.java</file>
+            <file>file:/D:/__Proyectos/_Repostorios/proyecto_crudJava/src/controlador/Conexion.java</file>
+            <file>file:/D:/__Proyectos/_Repostorios/proyecto_crudJava/src/vista/Loby.java</file>
+            <file>file:/D:/__Proyectos/_Repostorios/proyecto_crudJava/src/controlador/ConMaquinas.java</file>
+            <file>file:/D:/__Proyectos/_Repostorios/proyecto_crudJava/src/vista/pruebas.java</file>
+            <file>file:/D:/__Proyectos/_Repostorios/proyecto_crudJava/src/vista/ReparacionesForm.java</file>
+            <file>file:/D:/__Proyectos/_Repostorios/proyecto_crudJava/src/controlador/ConMaquinasMantenimiento.java</file>
+            <file>file:/D:/__Proyectos/_Repostorios/proyecto_crudJava/src/vista/MantenimientoTabla.java</file>
+            <file>file:/D:/__Proyectos/_Repostorios/proyecto_crudJava/src/modelos/Trabajador.java</file>
         </group>
     </open-files>
 </project-private>
