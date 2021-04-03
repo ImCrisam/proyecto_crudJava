@@ -109,10 +109,10 @@ public class ConMaquinas {
             PreparedStatement statement = conexion.getCon().prepareStatement(sql);
             statement.setString(1, modelo.getSerie());
             statement.setString(2, modelo.getModelo());
-            statement.setString(1, modelo.getMarca());
-            statement.setString(2, modelo.getNombre());
-            statement.setString(1, modelo.getTipo());
-            statement.setInt(4, modelo.getId());
+            statement.setString(3, modelo.getMarca());
+            statement.setString(4, modelo.getNombre());
+            statement.setString(5, modelo.getTipo());
+            statement.setInt(6, modelo.getId());
 
             int rowsUpdated = statement.executeUpdate();
             if (rowsUpdated > 0) {
