@@ -49,6 +49,16 @@ public class Maquinas_Mantenimiento {
         this.maquina = maquina;
          this.array = new ArrayList<>();
     }
+
+    public Maquinas_Mantenimiento(int id, int id_mantenimiento, int id_maquina, int cc_trabajador, Maquina maquina) {
+        this.id = id;
+        this.id_mantenimiento = id_mantenimiento;
+        this.id_maquina = id_maquina;
+        this.cc_trabajador = cc_trabajador;
+        this.maquina = maquina;
+    }
+    
+    
     
     public Object[] getDatos(){
      return new Object[]{id, id_maquina, cc_trabajador};

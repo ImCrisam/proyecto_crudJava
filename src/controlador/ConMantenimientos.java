@@ -12,6 +12,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import modelos.Cliente;
 import modelos.Mantenimiento;
+import modelos.Reparacion;
+import modelos.Maquina;
+
+import modelos.Maquinas_Mantenimiento;
+
+
 
 
 public class ConMantenimientos {
@@ -56,6 +62,55 @@ public class ConMantenimientos {
                                         rs.getString("apellido"),
                                         rs.getString("telefono"),
                                         rs.getString("tipo"))
+                        )
+                );
+            }
+            conexion.cerrar();
+        } catch (SQLException e) {
+            System.err.println("Error:" + e);
+        }
+        return result;
+    }
+    
+    
+        public ArrayList<Reparacion> listarAllReparacionesMantenimiento(int idMantenimiento) {
+        Statement st;
+        ResultSet rs;
+        ArrayList<Reparacion> result = new ArrayList<>();
+
+        try {
+            st = conexion.getCon().createStatement();
+            rs = st.executeQuery("SELECT * "
+                    + "FROM reparaciones "
+                    + "JOIN maquinas_mantenimiento "
+                    + "ON reparaciones.id_maquina_mantenimiento = maquinas_mantenimiento.id "
+                    + "JOIN maquinas "
+                    + "ON maquinas_mantenimiento.id_maquina = maquinas.id "
+                    + "WHERE maquinas_mantenimiento.id_mantenimiento = "+idMantenimiento
+            );
+            while (rs.next()) {
+                
+                result.add(
+                        new Reparacion(
+                                rs.getInt("id"),
+                                rs.getString("descripcion"),
+                                rs.getDouble("valor"),
+                                rs.getInt("id_maquina_mantenimiento"),
+                                new Maquinas_Mantenimiento(
+                                        rs.getInt("id_maquina_mantenimiento"), 
+                                        idMantenimiento, 
+                                        rs.getInt("id_maquina"),
+                                        rs.getInt("cc_trabajador"), 
+                                        new Maquina(
+                                                rs.getInt("id_maquina"), 
+                                                rs.getString("serial"), 
+                                                rs.getString("modelo"), 
+                                                rs.getString("marca"),
+                                                rs.getString("nombre"), 
+                                                rs.getString("tipo")
+                                        )
+                                )
+                            
                         )
                 );
             }
