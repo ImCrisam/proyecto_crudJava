@@ -17,6 +17,15 @@ public class Cliente {
     private String celular;
     private String tipo;
 
+    public Cliente(String nombre, String apellido, String celular, String tipo) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.celular = celular;
+        this.tipo = tipo;
+    }
+
+    
+    
     public Cliente(int cc, String nombre, String apellido, String celular, String tipo) {
         this.cc = cc;
         this.nombre = nombre;

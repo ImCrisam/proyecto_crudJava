@@ -64,7 +64,13 @@ public class ConClientes {
     }
 
     public int insert(Cliente modelo) {
-        String sql = "INSERT INTO clientes (cc, nombre, apellido, telefono, tipo) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO clientes ("
+                + "cc, "
+                + "nombre, "
+                + "apellido, "
+                + "telefono, "
+                + "tipo) "
+                + "VALUES (?, ?, ?, ?, ?)";
 
         PreparedStatement statement;
         try {
@@ -98,7 +104,7 @@ public class ConClientes {
                     + "SET "
                     + "nombre=?, "
                     + "apellido=?, "
-                    + "telefono=? "
+                    + "telefono=?, "
                     + "tipo=? "
                     + "WHERE cc=?";
             PreparedStatement statement = conexion.getCon().prepareStatement(sql);

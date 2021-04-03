@@ -5,6 +5,9 @@
  */
 package vista;
 
+import modelos.Cliente;
+import controlador.ConClientes;
+
 /**
  *
  * @author David Raigosa
@@ -14,8 +17,50 @@ public class ClientesForm extends javax.swing.JFrame {
     /**
      * Creates new form Clientes
      */
-    public ClientesForm() {
+    ConClientes controlador;
+    boolean isNew;
+
+    public ClientesForm(Cliente modelo) {
         initComponents();
+        controlador = new ConClientes();
+        if (modelo != null) {
+            isNew = false;
+            btnAceptar.setText("Modificar");
+            txtCedula.setEditable(false);
+            txtCedula.setText(modelo.getCc() + "");
+            txtNombres.setText(modelo.getNombre() + "");
+            txtApellido.setText(modelo.getApellido() + "");
+            txtTelefono.setText(modelo.getCelular() + "");
+            txtTipo.setText(modelo.getTipo() + "");
+
+        } else {
+            isNew = true;
+            btnEliminar.setVisible(false);
+            btnAceptar.setText("Crear");
+
+        }
+
+    }
+
+    private Cliente getModelo() {
+        if (isNew) {
+            return new Cliente(
+                    Integer.parseInt(txtCedula.getText()),
+                    txtNombres.getText(),
+                    txtApellido.getText(),
+                    txtTelefono.getText(),
+                    txtTipo.getText()
+            );
+
+        } else {
+            return new Cliente(
+                    Integer.parseInt(txtCedula.getText()),
+                    txtNombres.getText(),
+                    txtApellido.getText(),
+                    txtTelefono.getText(),
+                    txtTipo.getText()
+            );
+        }
     }
 
     /**
@@ -38,7 +83,7 @@ public class ClientesForm extends javax.swing.JFrame {
         labCedula = new javax.swing.JLabel();
         labNombre = new javax.swing.JLabel();
         txtNombres = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         btnAceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -60,14 +105,19 @@ public class ClientesForm extends javax.swing.JFrame {
 
         labNombre.setText("Nombres");
 
-        jButton1.setText("Eliminar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
 
         btnAceptar.setText("Crear");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -77,7 +127,7 @@ public class ClientesForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -122,7 +172,7 @@ public class ClientesForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptar)
-                    .addComponent(jButton1))
+                    .addComponent(btnEliminar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -149,14 +199,25 @@ public class ClientesForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCedulaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        controlador.delete(getModelo());
+        dispose();
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
- 
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        if (isNew) {
+            controlador.insert(getModelo());
+        } else {
+            controlador.update(getModelo());
+
+        }
+        dispose();
+    }//GEN-LAST:event_btnAceptarActionPerformed
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labApellido;
     private javax.swing.JLabel labCedula;
