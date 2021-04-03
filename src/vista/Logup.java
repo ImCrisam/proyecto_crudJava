@@ -7,19 +7,75 @@ package vista;
 
 import controlador.ConUsuarios;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author David Raigosa
  */
 import modelos.Usuario;
+import modelos.Trabajador;
+
+import controlador.ConUsuarios;
+import controlador.ConTrabajadores;
+
+import java.util.ArrayList;
 
 public class Logup extends javax.swing.JFrame {
 
     /**
      * Creates new form registrarse
      */
-    public Logup() {
+    ConUsuarios controlador;
+    ArrayList<Trabajador> arrayTrabajadores;
+    boolean isNew;
+
+    public Logup(Usuario modelo) {
         initComponents();
+        controlador = new ConUsuarios();
+        txtTrabajadores.setEditable(false);
+        llenarComboBoxs();
+        if (modelo != null) {
+            isNew = false;
+            txtID.setEditable(false);
+            txtID.setText(modelo.getId() + "");
+            txtTrabajadores.setText(modelo.getCc_trabajador() + "");
+            btnAceptar.setText("Modificar");
+            temail.setText(modelo.getEmail()+ "");
+
+        } else {
+            isNew = true;
+            txtID.setEnabled(false);
+            btnEliminar.setVisible(false);
+            btnAceptar.setText("Crear");
+
+        }
+    }
+
+    private void llenarComboBoxs() {
+        ConTrabajadores mante = new ConTrabajadores();
+        arrayTrabajadores = mante.listar();
+        for (Trabajador item : arrayTrabajadores) {
+            cbTrabajadores.addItem(item.getCc() + ":" + item.getNombre());
+        }
+
+    }
+
+    private Usuario getModelo() {
+        if (isNew) {
+            return new Usuario(
+                    temail.getText(),
+                    tContraseña.getText(),
+                    Integer.parseInt(txtTrabajadores.getText())
+            );
+
+        } else {
+            return new Usuario(
+                    Integer.parseInt(txtID.getText()),
+                    temail.getText(),
+                    tContraseña.getText(),
+                    Integer.parseInt(txtTrabajadores.getText())
+            );
+        }
     }
 
     /**
@@ -31,21 +87,22 @@ public class Logup extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         btnAceptar = new javax.swing.JButton();
-        tCC = new javax.swing.JTextField();
         temail = new javax.swing.JTextField();
         tContraseña = new javax.swing.JTextField();
         tContraseñar = new javax.swing.JTextField();
         btnEliminar = new javax.swing.JButton();
+        txtTrabajadores = new javax.swing.JTextField();
+        cbTrabajadores = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        txtID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
-
-        jLabel1.setText("CC trabajdor");
 
         jLabel3.setText("email");
 
@@ -79,36 +136,66 @@ public class Logup extends javax.swing.JFrame {
         });
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
+        cbTrabajadores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbTrabajadoresActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Trabajador");
+
+        jLabel1.setText("ID");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tCC)
-                    .addComponent(temail)
-                    .addComponent(tContraseña)
-                    .addComponent(tContraseñar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                    .addComponent(btnAceptar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(36, 36, 36))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(temail)
+                            .addComponent(tContraseña)
+                            .addComponent(tContraseñar, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnAceptar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtID)
+                            .addComponent(txtTrabajadores)
+                            .addComponent(cbTrabajadores, 0, 218, Short.MAX_VALUE))))
+                .addGap(32, 32, 32))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tCC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel1)
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(cbTrabajadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtTrabajadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(temail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -124,7 +211,7 @@ public class Logup extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptar)
                     .addComponent(btnEliminar))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGap(29, 29, 29))
         );
 
         pack();
@@ -135,17 +222,21 @@ public class Logup extends javax.swing.JFrame {
     }//GEN-LAST:event_temailActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        if (!temail.getText().isEmpty() && tContraseña.getText().equals(tContraseñar.getText())) {
-            System.out.println("vista.Logup.jButton1ActionPerformed()");
-            ConUsuarios controlador = new ConUsuarios();
-            int result =controlador.insert(new Usuario(temail.getText(), tContraseña.getText(), Integer.parseInt(tCC.getText())));
-            if(result ==1){
-                JOptionPane.showMessageDialog(null, "usuario Creado");
-                dispose();
-            }else{
-                JOptionPane.showMessageDialog(null, "error");
+        if (isNew) {
+            if (!temail.getText().isEmpty() && tContraseña.getText().equals(tContraseñar.getText())) {
+                controlador.insert(getModelo());
+            }
+
+        } else {
+            if (!tContraseña.getText().isEmpty() && tContraseña.getText().equals(tContraseñar.getText())) {
+                controlador.updateConContraseña(getModelo());
+            } else if (tContraseña.getText().isEmpty()) {
+                controlador.updateSinContraseña(getModelo());
             }
         }
+
+        dispose();
+
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void tContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tContraseñaActionPerformed
@@ -156,17 +247,29 @@ public class Logup extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tContraseñarActionPerformed
 
+    private void cbTrabajadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTrabajadoresActionPerformed
+        txtTrabajadores.setText(arrayTrabajadores.get(cbTrabajadores.getSelectedIndex()).getCc() + "");
+    }//GEN-LAST:event_cbTrabajadoresActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        controlador.delete(getModelo());
+        dispose();
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JComboBox<String> cbTrabajadores;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField tCC;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField tContraseña;
     private javax.swing.JTextField tContraseñar;
     private javax.swing.JTextField temail;
+    private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtTrabajadores;
     // End of variables declaration//GEN-END:variables
 }

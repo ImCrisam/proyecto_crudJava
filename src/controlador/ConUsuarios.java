@@ -119,7 +119,29 @@ public class ConUsuarios {
 
     }
 
-    public boolean update(Usuario modelo) {
+    public boolean updateSinContraseña(Usuario modelo) {
+
+        try {
+            String sql = "UPDATE usuarios SET email=?, cc_trabajador=? WHERE id=?";
+            PreparedStatement statement = conexion.getCon().prepareStatement(sql);
+            statement.setString(1, modelo.getEmail());
+            statement.setInt(2, modelo.getCc_trabajador());
+            statement.setInt(3, modelo.getId());
+
+            int rowsUpdated = statement.executeUpdate();
+            if (rowsUpdated > 0) {
+            }
+            statement.close();
+            conexion.cerrar();
+            return true;
+
+        } catch (SQLException ex) {
+            System.err.println(ex);
+            return false;
+        }
+    }
+    
+    public boolean updateConContraseña(Usuario modelo) {
 
         try {
             String sql = "UPDATE usuarios SET email=?, contraseña=?, cc_trabajador=? WHERE id=?";
