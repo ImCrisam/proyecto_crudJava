@@ -88,6 +88,7 @@ public class ClientesForm extends javax.swing.JFrame {
         btnAceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setName("ClientesFrom"); // NOI18N
         setResizable(false);
 
         labApellido.setText("Apellidos");

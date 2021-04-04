@@ -80,6 +80,7 @@ public class ReparacionesForm extends javax.swing.JFrame {
         txtDescripcion = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setName("ReparacionesForm"); // NOI18N
         setResizable(false);
 
         labId.setText("ID");

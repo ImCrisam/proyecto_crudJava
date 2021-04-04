@@ -100,6 +100,7 @@ public class MantenimientoForm extends javax.swing.JFrame {
         btnAceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setName("MantenimientoForm"); // NOI18N
         setResizable(false);
 
         jLabel2.setText("Fecha de incio");

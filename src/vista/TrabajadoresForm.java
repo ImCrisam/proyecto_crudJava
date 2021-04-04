@@ -87,6 +87,7 @@ public class TrabajadoresForm extends javax.swing.JFrame {
         btnAceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setName("TrabajadoresForm"); // NOI18N
         setResizable(false);
 
         labApellido.setText("Apellidos");

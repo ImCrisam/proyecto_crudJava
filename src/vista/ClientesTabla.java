@@ -58,6 +58,7 @@ public class ClientesTabla extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setName("ClientesTrabla"); // NOI18N
         setResizable(false);
 
         btnNuevo.setText("Nuevo");

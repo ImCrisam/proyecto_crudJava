@@ -102,6 +102,7 @@ public class Logup extends javax.swing.JFrame {
         txtID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setName("Logup"); // NOI18N
         setResizable(false);
 
         jLabel3.setText("email");

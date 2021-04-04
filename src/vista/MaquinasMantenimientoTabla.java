@@ -75,6 +75,7 @@ public class MaquinasMantenimientoTabla extends javax.swing.JFrame {
         btnEditar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setName(" MaquinasMantenimientoTabla"); // NOI18N
         setResizable(false);
 
         btnNuevo.setText("Nuevo");

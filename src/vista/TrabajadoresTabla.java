@@ -59,6 +59,7 @@ public class TrabajadoresTabla extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setName("TrabajadoresTabla"); // NOI18N
         setResizable(false);
 
         jButton2.setText("Nuevo");

@@ -57,6 +57,7 @@ public class FacturasTabla extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setName("FacturasTabla"); // NOI18N
         setResizable(false);
 
         jButton3.setText("Listar");

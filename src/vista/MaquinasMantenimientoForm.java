@@ -120,6 +120,7 @@ public class MaquinasMantenimientoForm extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setName("MaquinasMantenimientoForm"); // NOI18N
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));

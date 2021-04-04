@@ -58,6 +58,7 @@ public class MantenimientoTabla extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setName("MantenimientoTabla"); // NOI18N
         setResizable(false);
 
         jButton2.setText("Nuevo");

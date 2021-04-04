@@ -91,6 +91,7 @@ public class MaquinaForm extends javax.swing.JFrame {
         txtTipo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setName("MaquinaForm"); // NOI18N
         setResizable(false);
 
         txtID.addActionListener(new java.awt.event.ActionListener() {
