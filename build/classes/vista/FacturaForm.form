@@ -185,6 +185,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="txtID">
           <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="txtID"/>
             <Property name="horizontalTextPosition" type="int" value="4"/>
           </Properties>
@@ -196,6 +197,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="txtFecha">
           <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="txtFecha"/>
             <Property name="horizontalTextPosition" type="int" value="2"/>
           </Properties>
@@ -219,11 +221,13 @@
         </Component>
         <Component class="javax.swing.JLabel" name="txtClienteid">
           <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="txtClienteID"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="txtClientenombre">
           <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="txtClienteNombre"/>
           </Properties>
         </Component>
@@ -241,6 +245,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="txtValorm">
           <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="txtValorMante"/>
           </Properties>
         </Component>

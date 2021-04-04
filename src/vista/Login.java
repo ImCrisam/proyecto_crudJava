@@ -124,11 +124,12 @@ public class Login extends javax.swing.JFrame {
        ConUsuarios controlador = new ConUsuarios();
        Usuario user = controlador.login(txtUsuario.getText(), new String(txtContraseña.getPassword()));
        if(user != null){
+           
          Loby vista = new Loby(user);
          vista.setVisible(true);
          dispose();
        }else{
-       JOptionPane.showMessageDialog(null, "Error");
+       JOptionPane.showMessageDialog(null, "Uusuario o Contraseña incorrecta");
        }
     }//GEN-LAST:event_btnLoginActionPerformed
 

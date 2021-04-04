@@ -41,9 +41,9 @@ public class ConUsuarios {
                     + "from usuarios "
                     + "JOIN trabajadores "
                     + "ON usuarios.cc_trabajador = trabajadores.cc "
-                    + "WHERE usuarios.email='" + email + "'";
+                    + "WHERE usuarios.email='" + email + "'"
+                    + "AND usuarios.contraseña='" + contraseña + "'";
 
-            System.out.println(s);
             st = conexion.getCon().createStatement();
             rs = st.executeQuery(s);
 
@@ -61,7 +61,6 @@ public class ConUsuarios {
                             rs.getString("tipo")));
 
             conexion.cerrar();
-            System.out.println(user.getTrabajador().getApellido());
             return user;
         } catch (SQLException e) {
             System.err.println("Error:" + e);

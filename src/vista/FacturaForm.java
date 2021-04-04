@@ -109,11 +109,13 @@ public class FacturaForm extends javax.swing.JFrame {
 
         jLabel1.setText("ID");
 
+        txtID.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         txtID.setText("txtID");
         txtID.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         jLabel2.setText("Fecha");
 
+        txtFecha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         txtFecha.setText("txtFecha");
         txtFecha.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
@@ -123,14 +125,17 @@ public class FacturaForm extends javax.swing.JFrame {
 
         jLabel6.setText("Nombre");
 
+        txtClienteid.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         txtClienteid.setText("txtClienteID");
 
+        txtClientenombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         txtClientenombre.setText("txtClienteNombre");
 
         jLabel9.setText("Trabajos");
 
         jLabel10.setText("Valor Mantenimiento");
 
+        txtValorm.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         txtValorm.setText("txtValorMante");
 
         jLabel12.setText("Reparaciones");

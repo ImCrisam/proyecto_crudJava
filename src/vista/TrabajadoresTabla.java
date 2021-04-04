@@ -161,6 +161,7 @@ public class TrabajadoresTabla extends javax.swing.JFrame {
     }//GEN-LAST:event_tablaMouseClicked
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        if(!txtBuscar.getText().isEmpty()){
         ArrayList<Trabajador> resultados = new ArrayList<>();
         int busqueda = Integer.parseInt(txtBuscar.getText());
         for (Trabajador maquina : array) {
@@ -169,6 +170,7 @@ public class TrabajadoresTabla extends javax.swing.JFrame {
             }
         }
         llenarTabla(resultados);
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed

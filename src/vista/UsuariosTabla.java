@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package vista;
+
 import controlador.ConUsuarios;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -16,22 +17,21 @@ public class UsuariosTabla extends javax.swing.JFrame {
      */
     private final ConUsuarios controlador;
     private ArrayList<Usuario> array;
-        private ArrayList<Usuario> arrayTablas;
+    private ArrayList<Usuario> arrayTablas;
 
-    
     public UsuariosTabla() {
         initComponents();
         controlador = new ConUsuarios();
         llenar();
     }
-    
-      private void llenar() {
+
+    private void llenar() {
         array = controlador.listar();
         llenarTabla(controlador.listar());
 
     }
-    
-    private void llenarTabla(ArrayList<Usuario> array){
+
+    private void llenarTabla(ArrayList<Usuario> array) {
         DefaultTableModel dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(controlador.describe());
 
@@ -41,6 +41,7 @@ public class UsuariosTabla extends javax.swing.JFrame {
         }
         tabla.setModel(dtm);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -147,7 +148,7 @@ public class UsuariosTabla extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-       Logup vista = new Logup(null);
+        Logup vista = new Logup(null);
         vista.setVisible(true);
     }//GEN-LAST:event_btnNuevoActionPerformed
 
@@ -156,25 +157,26 @@ public class UsuariosTabla extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
-         Logup vista = new Logup(arrayTablas.get(tabla.getSelectedRow()));
+        Logup vista = new Logup(arrayTablas.get(tabla.getSelectedRow()));
         vista.setVisible(true);
     }//GEN-LAST:event_tablaMouseClicked
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        ArrayList<Usuario> resultados = new ArrayList<>();
-        int busqueda = Integer.parseInt(txtBuscar.getText());
-        for (Usuario maquina : array) {
-            if (maquina.getId()== busqueda) {
-                resultados.add(maquina);
+        if (!txtBuscar.getText().isEmpty()) {
+            ArrayList<Usuario> resultados = new ArrayList<>();
+            int busqueda = Integer.parseInt(txtBuscar.getText());
+            for (Usuario maquina : array) {
+                if (maquina.getId() == busqueda) {
+                    resultados.add(maquina);
+                }
             }
+            llenarTabla(resultados);
         }
-        llenarTabla(resultados);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarActionPerformed
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

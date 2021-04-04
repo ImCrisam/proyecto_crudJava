@@ -7,6 +7,7 @@ package vista;
 
 import modelos.Cliente;
 import controlador.ConClientes;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -205,13 +206,28 @@ public class ClientesForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        int result =0;
         if (isNew) {
-            controlador.insert(getModelo());
+            result = controlador.insert(getModelo());
+              if (result == 1) {
+                JOptionPane.showMessageDialog(null, "Cliente Creado");
+                dispose();
+            } else if (result == 0) {
+                JOptionPane.showMessageDialog(null, "Cliente ya Existe");
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro");
+            }
         } else {
-            controlador.update(getModelo());
+            if(controlador.update(getModelo())){
+                JOptionPane.showMessageDialog(null, "Cliente modificado");
+                dispose();
+            }else{
+            JOptionPane.showMessageDialog(null, "Error");
+            };
 
         }
-        dispose();
+ 
     }//GEN-LAST:event_btnAceptarActionPerformed
 
 
