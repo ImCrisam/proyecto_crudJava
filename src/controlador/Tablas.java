@@ -151,7 +151,7 @@ public class Tablas {
         s += "id INT AUTO_INCREMENT PRIMARY KEY,";
         s += "email VARCHAR(30),";
         s += "contraseña VARCHAR(16),";
-        s += "cc_trabajador INT,";
+        s += "cc_trabajador INT UNIQUE,";
         s += "FOREIGN KEY(cc_trabajador) REFERENCES trabajadores(cc)";
         s += ");";
         return conexion.crearTabla(s);

@@ -36,6 +36,7 @@ public class Logup extends javax.swing.JFrame {
         llenarComboBoxs();
         if (modelo != null) {
             isNew = false;
+            cbTrabajadores.setEnabled(false);
             txtID.setEditable(false);
             txtID.setText(modelo.getId() + "");
             txtTrabajadores.setText(modelo.getCc_trabajador() + "");
@@ -54,6 +55,7 @@ public class Logup extends javax.swing.JFrame {
     private void llenarComboBoxs() {
         ConTrabajadores mante = new ConTrabajadores();
         arrayTrabajadores = mante.listar();
+        cbTrabajadores.addItem("Seleccione...");
         for (Trabajador item : arrayTrabajadores) {
             cbTrabajadores.addItem(item.getCc() + ":" + item.getNombre());
         }
@@ -64,7 +66,7 @@ public class Logup extends javax.swing.JFrame {
         if (isNew) {
             return new Usuario(
                     temail.getText(),
-                    tContraseña.getText(),
+                    new String(tContraseña.getPassword()),
                     Integer.parseInt(txtTrabajadores.getText())
             );
 
@@ -72,7 +74,7 @@ public class Logup extends javax.swing.JFrame {
             return new Usuario(
                     Integer.parseInt(txtID.getText()),
                     temail.getText(),
-                    tContraseña.getText(),
+                    new String(tContraseña.getPassword()),
                     Integer.parseInt(txtTrabajadores.getText())
             );
         }
@@ -92,14 +94,15 @@ public class Logup extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         btnAceptar = new javax.swing.JButton();
         temail = new javax.swing.JTextField();
-        tContraseña = new javax.swing.JTextField();
-        tContraseñar = new javax.swing.JTextField();
         btnEliminar = new javax.swing.JButton();
         txtTrabajadores = new javax.swing.JTextField();
         cbTrabajadores = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
+        tContraseña = new javax.swing.JPasswordField();
+        tContraseñar = new javax.swing.JPasswordField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setName("Logup"); // NOI18N
@@ -124,18 +127,6 @@ public class Logup extends javax.swing.JFrame {
             }
         });
 
-        tContraseña.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tContraseñaActionPerformed(evt);
-            }
-        });
-
-        tContraseñar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tContraseñarActionPerformed(evt);
-            }
-        });
-
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,9 +140,11 @@ public class Logup extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Trabajador");
+        jLabel6.setText("Trabajadores");
 
         jLabel1.setText("ID");
+
+        jLabel2.setText("CC Trabajador");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -169,13 +162,14 @@ public class Logup extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(temail)
+                            .addComponent(btnAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                             .addComponent(tContraseña)
-                            .addComponent(tContraseñar, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnAceptar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(tContraseñar)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel1))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtID)
@@ -195,7 +189,9 @@ public class Logup extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(cbTrabajadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtTrabajadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTrabajadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -225,52 +221,67 @@ public class Logup extends javax.swing.JFrame {
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
 
         if (isNew) {
-            if (!temail.getText().isEmpty() && tContraseña.getText().equals(tContraseñar.getText())) {
-                int result = controlador.insert(getModelo());
-                if (result == 1) {
-                    JOptionPane.showMessageDialog(null, "Usuario Creado");
-                    dispose();
-                } else if (result == 0) {
-                    JOptionPane.showMessageDialog(null, "Usuario ya Existe");
-                    dispose();
+            if (!temail.getText().isEmpty()
+                    && !txtTrabajadores.getText().isEmpty()) {
+                if (new String(tContraseña.getPassword()).equals(new String(tContraseñar.getPassword()))) {
+                    int result = controlador.insert(getModelo());
+                    if (result == 1) {
+                        JOptionPane.showMessageDialog(null, "Usuario Creado");
+                        dispose();
+                    } else if (result == 0) {
+                        JOptionPane.showMessageDialog(null, "Usuario ya Existe");
+                        dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error");
+                    }
+
                 } else {
-                    JOptionPane.showMessageDialog(null, "Erro");
+                    JOptionPane.showMessageDialog(null, "Contraseñas no coinciden");
+
                 }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Ingrese todos los datos");
             }
 
         } else {
-            if (!tContraseña.getText().isEmpty() && tContraseña.getText().equals(tContraseñar.getText())) {
-                if (controlador.updateConContraseña(getModelo())) {
-                    JOptionPane.showMessageDialog(null, "Usuario Modificado");
-                    dispose();
+            if (!new String(tContraseña.getPassword()).isEmpty()) {
+                if (new String(tContraseña.getPassword()).equals(new String(tContraseñar.getPassword()))) {
+                    if (controlador.updateConContraseña(getModelo())) {
+                        JOptionPane.showMessageDialog(null, "Usuario Modificado");
+                        dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error");
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Erro");
-                };
-            } else if (tContraseña.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Contraseñas no coinciden");
+                }
+
+            } else if (new String(tContraseña.getPassword()).isEmpty()) {
                 if (controlador.updateSinContraseña(getModelo())) {
                     JOptionPane.showMessageDialog(null, "Usuario Modificado");
                     dispose();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Erro");
-                };
+                    JOptionPane.showMessageDialog(null, "Error");
+                }
             }
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
 
-    private void tContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tContraseñaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tContraseñaActionPerformed
-
-    private void tContraseñarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tContraseñarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tContraseñarActionPerformed
-
     private void cbTrabajadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTrabajadoresActionPerformed
-        txtTrabajadores.setText(arrayTrabajadores.get(cbTrabajadores.getSelectedIndex()).getCc() + "");
+        if (cbTrabajadores.getSelectedIndex() != 0) {
+            txtTrabajadores.setText(arrayTrabajadores.get(cbTrabajadores.getSelectedIndex() - 1).getCc() + "");
+        }
     }//GEN-LAST:event_cbTrabajadoresActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        controlador.delete(getModelo());
+        if (controlador.delete(getModelo())) {
+            JOptionPane.showMessageDialog(null, "Usuario Eliminado");
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Error");
+
+        }
         dispose();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
@@ -280,12 +291,13 @@ public class Logup extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JComboBox<String> cbTrabajadores;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField tContraseña;
-    private javax.swing.JTextField tContraseñar;
+    private javax.swing.JPasswordField tContraseña;
+    private javax.swing.JPasswordField tContraseñar;
     private javax.swing.JTextField temail;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtTrabajadores;

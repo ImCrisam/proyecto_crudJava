@@ -325,7 +325,7 @@ public class Loby extends javax.swing.JFrame {
         Window[] windows = getWindows();
         for (Window window : windows) {
                 window.dispose();
-                System.out.println(window.getName());
+                
         }
         Login vista = new Login();
         vista.setVisible(true);

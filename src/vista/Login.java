@@ -4,9 +4,12 @@
  * and open the template in the editor.
  */
 package vista;
+
 import controlador.ConUsuarios;
+import java.awt.Window;
 import javax.swing.JOptionPane;
 import modelos.Usuario;
+
 /**
  *
  * @author David Raigosa
@@ -122,22 +125,26 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-       ConUsuarios controlador = new ConUsuarios();
-       Usuario user = controlador.login(txtUsuario.getText(), new String(txtContraseña.getPassword()));
-       if(user != null){
-           
-         Loby vista = new Loby(user);
-         vista.setVisible(true);
-         dispose();
-       }else{
-       JOptionPane.showMessageDialog(null, "Uusuario o Contraseña incorrecta");
-       }
+        ConUsuarios controlador = new ConUsuarios();
+        Usuario user = controlador.login(txtUsuario.getText(), new String(txtContraseña.getPassword()));
+        if (user != null) {
+            Window[] windows = getWindows();
+            for (Window window : windows) {
+                window.dispose();
+
+            }
+            Loby vista = new Loby(user);
+            vista.setVisible(true);
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Uusuario o Contraseña incorrecta");
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
-        Logup vista  = new Logup(null);
+        Logup vista = new Logup(null);
         vista.setVisible(true);
-              
+
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed

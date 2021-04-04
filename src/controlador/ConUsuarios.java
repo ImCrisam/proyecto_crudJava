@@ -26,9 +26,9 @@ public class ConUsuarios {
     }
 
     public void defaultData() {
-        insert(new Usuario("virginia@gmail.com", "16480224", 16480224));
-        insert(new Usuario("1234", "1234", 1234));
-
+        insert(new Usuario("admin@gmail.com", "1234", 00000000));
+        
+        insert(new Usuario("1234", "1234", 16480224));
         insert(new Usuario("Brendan@gmail.com", "16490213", 16490213));
         insert(new Usuario("Laith@gmail.com", "16540209", 16540209));
     }

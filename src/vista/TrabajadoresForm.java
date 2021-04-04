@@ -202,7 +202,14 @@ public class TrabajadoresForm extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCedulaActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        controlador.delete(getModelo());
+        int result =controlador.delete(getModelo());
+          if (result == 1) {
+                JOptionPane.showMessageDialog(null, "Trabajador Eliminado");
+            } else if (result == 0) {
+                JOptionPane.showMessageDialog(null, "Debe Eliminar el usuario vinculado");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error");
+            }
         dispose();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
@@ -214,7 +221,7 @@ public class TrabajadoresForm extends javax.swing.JFrame {
             } else if (result == 0) {
                 JOptionPane.showMessageDialog(null, "Trabajdor ya Existe");
             } else {
-                JOptionPane.showMessageDialog(null, "Erro");
+                JOptionPane.showMessageDialog(null, "Error");
             }
 
         } else {
@@ -222,7 +229,7 @@ public class TrabajadoresForm extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Trabajador Modificado");
 
             } else {
-                JOptionPane.showMessageDialog(null, "Erro");
+                JOptionPane.showMessageDialog(null, "Error");
 
             };
 

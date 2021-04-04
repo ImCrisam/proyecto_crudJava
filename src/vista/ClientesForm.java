@@ -217,7 +217,7 @@ public class ClientesForm extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Cliente ya Existe");
                 dispose();
             } else {
-                JOptionPane.showMessageDialog(null, "Erro");
+                JOptionPane.showMessageDialog(null, "Error");
             }
         } else {
             if(controlador.update(getModelo())){

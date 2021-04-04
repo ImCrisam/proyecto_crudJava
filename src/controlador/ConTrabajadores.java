@@ -26,7 +26,7 @@ public class ConTrabajadores {
     }
     
     public void defaultData() {
-        insert(new Trabajador(1234, "Baxter", "Lewis", "835-9052506", "turpis"));
+        insert(new Trabajador(00000000, "Admin", "user", "", "Admin"));
         insert(new Trabajador(16480224, "Virginia", "Frazier", "698-3216340", "Maecenas"));
         insert(new Trabajador(16490213, "Brendan", "Robinson", "587-4581451", "In"));
         insert(new Trabajador(16540209, "Laith", "Webster", "179-4068032", "eu,"));
@@ -127,7 +127,7 @@ public class ConTrabajadores {
         }
     }
     
-      public boolean delete(Trabajador trabajador) {
+      public int delete(Trabajador trabajador) {
 
         try {
             String sql = "DELETE FROM trabajadores WHERE cc=?";
@@ -137,14 +137,17 @@ public class ConTrabajadores {
 
             int rowsDeleted = statement.executeUpdate();
             if (rowsDeleted > 0) {
-                System.out.println("A user was deleted successfully!");
             }
+                System.out.println(rowsDeleted);
             statement.close();
             conexion.cerrar();
-            return true;
+            return 1;
         } catch (SQLException ex) {
+             if (ex.getMessage().contains("foreign key")) {
+                return 0;
+            }
             System.err.println(ex);
-            return false;
+            return -1;
         }
     }
 

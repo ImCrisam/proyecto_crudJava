@@ -38,15 +38,16 @@
                       <EmptySpace pref="55" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="temail" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnAceptar" alignment="0" pref="150" max="32767" attributes="0"/>
                           <Component id="tContraseña" alignment="0" max="32767" attributes="0"/>
-                          <Component id="tContraseñar" alignment="1" max="32767" attributes="0"/>
-                          <Component id="btnAceptar" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="tContraseñar" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -74,7 +75,10 @@
                   <Component id="cbTrabajadores" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="txtTrabajadores" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtTrabajadores" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -129,16 +133,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="temailActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="tContrase&#xf1;a">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tContrase&#xf1;aActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="tContrase&#xf1;ar">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tContrase&#xf1;arActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="btnEliminar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Eliminar"/>
@@ -164,7 +158,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Trabajador"/>
+        <Property name="text" type="java.lang.String" value="Trabajadores"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
@@ -173,6 +167,15 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtID">
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="tContrase&#xf1;a">
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="tContrase&#xf1;ar">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="CC Trabajador"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
