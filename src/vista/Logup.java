@@ -40,7 +40,7 @@ public class Logup extends javax.swing.JFrame {
             txtID.setText(modelo.getId() + "");
             txtTrabajadores.setText(modelo.getCc_trabajador() + "");
             btnAceptar.setText("Modificar");
-            temail.setText(modelo.getEmail()+ "");
+            temail.setText(modelo.getEmail() + "");
 
         } else {
             isNew = true;
@@ -223,21 +223,38 @@ public class Logup extends javax.swing.JFrame {
     }//GEN-LAST:event_temailActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+
         if (isNew) {
             if (!temail.getText().isEmpty() && tContraseña.getText().equals(tContraseñar.getText())) {
-                controlador.insert(getModelo());
+                int result = controlador.insert(getModelo());
+                if (result == 1) {
+                    JOptionPane.showMessageDialog(null, "Usuario Creado");
+                    dispose();
+                } else if (result == 0) {
+                    JOptionPane.showMessageDialog(null, "Usuario ya Existe");
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Erro");
+                }
             }
 
         } else {
             if (!tContraseña.getText().isEmpty() && tContraseña.getText().equals(tContraseñar.getText())) {
-                controlador.updateConContraseña(getModelo());
+                if (controlador.updateConContraseña(getModelo())) {
+                    JOptionPane.showMessageDialog(null, "Usuario Modificado");
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Erro");
+                };
             } else if (tContraseña.getText().isEmpty()) {
-                controlador.updateSinContraseña(getModelo());
+                if (controlador.updateSinContraseña(getModelo())) {
+                    JOptionPane.showMessageDialog(null, "Usuario Modificado");
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Erro");
+                };
             }
         }
-
-        dispose();
-
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void tContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tContraseñaActionPerformed

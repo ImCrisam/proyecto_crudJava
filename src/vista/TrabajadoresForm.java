@@ -7,6 +7,7 @@ package vista;
 
 import modelos.Trabajador;
 import controlador.ConTrabajadores;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -207,11 +208,26 @@ public class TrabajadoresForm extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         if (isNew) {
-            controlador.insert(getModelo());
+            int result = controlador.insert(getModelo());
+            if (result == 1) {
+                JOptionPane.showMessageDialog(null, "Trabajador Creado");
+            } else if (result == 0) {
+                JOptionPane.showMessageDialog(null, "Trabajdor ya Existe");
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro");
+            }
+
         } else {
-            controlador.update(getModelo());
+            if (controlador.update(getModelo())) {
+                JOptionPane.showMessageDialog(null, "Trabajador Modificado");
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro");
+
+            };
 
         }
+
         dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 

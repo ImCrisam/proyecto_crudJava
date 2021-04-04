@@ -11,6 +11,7 @@ import modelos.Cliente;
 import controlador.ConMantenimientos;
 import controlador.ConClientes;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -225,12 +226,25 @@ public class MantenimientoForm extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         if (isNew) {
-            controlador.insert(getModelo());
+            int result = controlador.insert(getModelo());
+            if (result == 1) {
+                JOptionPane.showMessageDialog(null, "Mantenimiento Creado");
+                dispose();
+            } else if (result == 0) {
+                JOptionPane.showMessageDialog(null, "Trabajdor ya Existe");
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro");
+            }
         } else {
-            controlador.update(getModelo());
-
+            if (controlador.update(getModelo())) {
+                JOptionPane.showMessageDialog(null, "Mantenimiento Creado");
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro");
+            };
         }
-        dispose();
+
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed

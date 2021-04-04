@@ -7,6 +7,7 @@ package vista;
 
 import modelos.Maquina;
 import controlador.ConMaquinas;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,11 +29,11 @@ public class MaquinaForm extends javax.swing.JFrame {
             btnAceptar.setText("Modificar");
             txtID.setEditable(false);
             txtID.setText(modelo.getId() + "");
-            txtSerial.setText(modelo.getSerie()+ "");
-            txtModelo.setText(modelo.getModelo()+ "");
-            txtMarca.setText(modelo.getMarca()+ "");
-            txtNombre.setText(modelo.getNombre()+ "");
-            txtTipo.setText(modelo.getTipo()+ "");
+            txtSerial.setText(modelo.getSerie() + "");
+            txtModelo.setText(modelo.getModelo() + "");
+            txtMarca.setText(modelo.getMarca() + "");
+            txtNombre.setText(modelo.getNombre() + "");
+            txtTipo.setText(modelo.getTipo() + "");
 
         } else {
             isNew = true;
@@ -42,8 +43,8 @@ public class MaquinaForm extends javax.swing.JFrame {
 
         }
     }
-    
-        private Maquina getModelo() {
+
+    private Maquina getModelo() {
         if (isNew) {
             return new Maquina(
                     txtSerial.getText(),
@@ -214,17 +215,32 @@ public class MaquinaForm extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIDActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-           if (isNew) {
-            controlador.insert(getModelo());
+        if (isNew) {
+            int result = controlador.insert(getModelo());
+            if (result == 1) {
+                JOptionPane.showMessageDialog(null, "Mantenimiento Creado");
+                 dispose();
+            } else if (result == 0) {
+                JOptionPane.showMessageDialog(null, "Mantenimiento ya Existe");
+                 dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro");
+            }
         } else {
-            controlador.update(getModelo());
+            if (controlador.update(getModelo())) {
+                JOptionPane.showMessageDialog(null, "Mantenimiento Modificado");
+                 dispose();
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro");
+            }
 
         }
-        dispose();
+    
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-          controlador.delete(getModelo());
+        controlador.delete(getModelo());
         dispose();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
