@@ -197,10 +197,6 @@ public class ClientesForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCedulaActionPerformed
-
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         controlador.delete(getModelo());
         dispose();
@@ -209,7 +205,9 @@ public class ClientesForm extends javax.swing.JFrame {
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         int result =0;
         if (isNew) {
-            result = controlador.insert(getModelo());
+            try{
+                int i  = Integer.parseInt(txtCedula.getText());
+                result = controlador.insert(getModelo());
               if (result == 1) {
                 JOptionPane.showMessageDialog(null, "Cliente Creado");
                 dispose();
@@ -219,6 +217,10 @@ public class ClientesForm extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Error");
             }
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Cedula invalida");
+            }
+            
         } else {
             if(controlador.update(getModelo())){
                 JOptionPane.showMessageDialog(null, "Cliente modificado");
@@ -230,6 +232,11 @@ public class ClientesForm extends javax.swing.JFrame {
         }
  
     }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_txtCedulaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
