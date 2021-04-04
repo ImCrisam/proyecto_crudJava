@@ -5,6 +5,7 @@
  */
 package vista;
 
+import java.awt.Window;
 import modelos.Usuario;
 
 public class Loby extends javax.swing.JFrame {
@@ -321,13 +322,17 @@ public class Loby extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         dispose();
+        Window[] windows = getWindows();
+        for (Window window : windows) {
+                window.dispose();
+        }
         Login vista = new Login();
         vista.setVisible(true);
-        
+
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-          FacturasTabla vista = new FacturasTabla();
+        FacturasTabla vista = new FacturasTabla();
         vista.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
